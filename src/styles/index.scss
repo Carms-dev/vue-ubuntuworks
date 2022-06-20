@@ -1,8 +1,12 @@
-:root {
-  --white: #fff;
-  --charcoal: #333333;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-button {
-  border: 1px solid red;
-}
+// :root {
+//   --white: #fff;
+//   --charcoal: #333333;
+// }
+
+// button {
+//   border: 1px solid red;
+// }
