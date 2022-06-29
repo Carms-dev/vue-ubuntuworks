@@ -1,7 +1,20 @@
-// Example of project-name.scss
-// Define variables to override default ones
-$primary-color: #44ec2e;
-$dark-color: #ff0000;
+@charset "utf-8";
 
-// Import full Spectre source code
-@import "../node_modules/spectre.css/src/spectre";
+// Import a Poppins Font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+// Font family
+$family-sans-serif: "Inter", sans-serif;
+$family-secondary: "Poppins", sans-serif;
+
+// Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/container.sass";
+@import "../node_modules/bulma/sass/elements/title.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/components/navbar.sass";
+@import "../node_modules/bulma/sass/layout/hero.sass";
+@import "../node_modules/bulma/sass/layout/section.sass";
