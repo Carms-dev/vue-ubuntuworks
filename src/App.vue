@@ -8,8 +8,7 @@ import Header from './components/Header.vue';
 <template>
   <Header></Header>
   <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
-  <section class="section">
-  </section>
+  <router-view></router-view>
 </template>
 
 <style lang="scss">

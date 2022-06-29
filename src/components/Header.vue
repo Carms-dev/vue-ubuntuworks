@@ -17,9 +17,12 @@
 				<div class="navbar-end">
 					<div class="navbar-item">
 						<div class="buttons">
-							<a class="button is-outlined is-medium">
+							<!-- <a class="button is-outlined is-medium">
 								<strong>Start</strong>
-							</a>
+							</a> -->
+							<router-link class="pr-3 btn-prime" to="/reports/new">
+								<strong>Start</strong>							
+							</router-link>
 						</div>
 					</div>
 				</div>
