@@ -17,6 +17,7 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "autoprefixer": "^10.4.7",
     "sass": "^1.52.1",
+    "spectre.css": "^0.5.9",
     "vite": "^2.9.9",
     "vue-cli-plugin-vuestic-ui": "~1.0.6"
   }
