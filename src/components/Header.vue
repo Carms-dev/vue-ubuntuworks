@@ -20,7 +20,7 @@
 							<!-- <a class="button is-outlined is-medium">
 								<strong>Start</strong>
 							</a> -->
-							<router-link class="pr-3 btn-prime" to="/reports/new">
+							<router-link class="button is-outlined is-medium" to="/reports/new">
 								<strong>Start</strong>							
 							</router-link>
 						</div>
