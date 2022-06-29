@@ -12,6 +12,6 @@ import Header from './components/Header.vue'
 
 <style lang="scss">
 #app {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 </style>
