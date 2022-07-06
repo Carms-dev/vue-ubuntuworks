@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+	<nav class="navbar has-shadow is-spaced is-light" role="navigation" aria-label="main navigation">
 		<div class="container">
 			<div class="navbar-brand">
 				<a class="navbar-item" href="#">
@@ -20,7 +20,7 @@
 							<!-- <a class="button is-outlined is-medium">
 								<strong>Start</strong>
 							</a> -->
-							<router-link class="button is-outlined is-medium" to="/reports/new">
+							<router-link class="button is-medium is-primary" to="/reports/new">
 								<strong>Start</strong>							
 							</router-link>
 						</div>

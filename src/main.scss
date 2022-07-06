@@ -4,67 +4,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-// Font family
-$family-sans-serif: "Inter", sans-serif;
-$family-secondary: "Poppins", sans-serif;
-
-// Colours
-$grey-darker: #111019;
-$white-ter: #FFFEF9;
-$dark: $grey-darker;
-$light: $white-ter;
-$black: $dark;
-$white: $light;
-$primary: #FFB500;
-$success: #0AA0AE;
-$primary-invert: $grey-darker;
-
-// Background
-// $background: $white-ter;
-// $scheme-main: $white-ter;
-// $scheme-invert: $grey-darker;
-
-// Borders
-$border: $dark;
-$radius: 0;
-$control-border-width: 2px;
-
-// Navbar
-$navbar-height: 10rem;
-$navbar-item-img-max-height: 100px;
-$navbar-box-shadow-color: $dark;
-// $navbar-box-shadow-color: #11101911;
-// $navbar-box-shadow-size: 0 2px 10px 0;
-
-// Links
-$link: $grey-darker;
-$link-hover-border: $dark;
-
-// Buttons
-$button-family: $family-secondary;
-$button-padding-vertical: 1.5em;
-$button-padding-horizontal: 2em;
-
-// Shadow
-$shadow: $dark;
-
+// Custom variable values here...
 
 // Import only what you need from Bulma
-@import "../node_modules/bulma/sass/utilities/_all.sass";
-@import "../node_modules/bulma/sass/base/_all.sass";
-@import "../node_modules/bulma/sass/elements/button.sass";
-@import "../node_modules/bulma/sass/elements/container.sass";
-@import "../node_modules/bulma/sass/elements/title.sass";
-@import "../node_modules/bulma/sass/form/_all.sass";
-@import "../node_modules/bulma/sass/components/navbar.sass";
-@import "../node_modules/bulma/sass/layout/hero.sass";
-@import "../node_modules/bulma/sass/layout/section.sass";
+@import "../node_modules/bulma/bulma.sass";
 
 // Custom CSS rules below...
-
-.button {
-    text-transform: uppercase;
-    &:hover {
-        border-style: dashed;
-    }
+.navbar-brand img {
+    max-height: 100px;
+    max-width: unset;
 }
