@@ -6,6 +6,9 @@
 
 // Custom variable values here...
 
+// Navbar
+$navbar-height: 8rem;
+
 // Footer
 $footer-padding: 3rem 1.5rem;
 
@@ -14,6 +17,7 @@ $footer-padding: 3rem 1.5rem;
 
 // Custom CSS rules below...
 .navbar-brand img {
-    max-height: 80px;
+    max-height: 100px;
+    // height: 100px;
     max-width: unset;
 }

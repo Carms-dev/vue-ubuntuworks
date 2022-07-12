@@ -3,7 +3,7 @@
 
     <!-- HERO -->
     <section class="hero is-medium">
-      <div class="hero-body px-0">
+      <div class="hero-body">
         <div class="columns">
           <div class="column is-three-fifths">
             <h1 class="title is-size-1 has-text-weight-bold">
@@ -71,7 +71,7 @@
 
     <!-- Secondary Value Proposition -->
     <section class="section">
-      <div class="container is-max-desktop p-6 has-text-centered">
+      <div class="container is-max-desktop has-text-centered">
         <div class="box p-6">
           <h3 class="title is-3">Everyone wins. Yayyyyy!</h3>
           <p class="is-size-5 has-text-grey block">By taking a few minutes to check the boxes you are helping guests take the guesswork out of accessibility planning. AND increasing attendance to your events.</p>
