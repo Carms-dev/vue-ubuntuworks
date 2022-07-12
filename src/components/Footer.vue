@@ -1,11 +1,7 @@
 <template>
   <footer class="footer has-background-dark has-text-light">
     <div class="content has-text-centered">
-      <p>
-        <strong class="has-text-light">Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-      </p>
+      <p class="is-size-5">Copyright © {{ new Date().getFullYear() }} - <a class="link-light" href="https://ubuntuworks.ca/">UbuntuWorks</a></p>
     </div>
   </footer>
 </template>

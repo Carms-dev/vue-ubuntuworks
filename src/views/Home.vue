@@ -85,16 +85,21 @@
     </section>
 
     <!-- About -->
-    <section class="row my-5 py-5">
-      <div class="col-12 col-md-4">
-        <img style="width: 100%;" src="../assets/QPIRG-C_logo.png" alt="Qpirg Concordia Logo">
-      </div>
-      <div class="col-12 col-md-8" style="display: grid; align-content: center;">
-        <h2 class="display-6 mb-3">About this initiative</h2>
-        <p>These interactive modules are here to help you communicate to participants with disabilities what will be available at your event so that they can attend. At the end of the module, you'll have a description of your event's accessibility to be shared on social media, invitations etc.</p>
-        <p>This tool was created with the financial support of QPIRG Concordia, developed by Carms Ng, and written and created by Shay Hadley.</p>
+    <section class="section">
+      <div class="columns">
+        <div class="column is-one-third">
+          <figure class="image">
+            <img src="../assets/QPIRG-C_logo.png" alt="Qpirg Concordia Logo">
+          </figure>
+        </div>
+        <div class="column is-flex is-flex-direction-column is-justify-content-center">
+          <h2 class="title is-2">About this initiative</h2>
+          <p class="block">These interactive modules are here to help you communicate to participants with disabilities what will be available at your event so that they can attend. At the end of the module, you'll have a description of your event's accessibility to be shared on social media, invitations etc.</p>
+          <p>This tool was created with the financial support of QPIRG Concordia, developed by Carms Ng, and written and created by Shay Hadley.</p>
+        </div>
       </div>
     </section>
+
   </div>
 </template>
 
