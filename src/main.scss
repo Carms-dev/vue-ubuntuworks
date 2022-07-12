@@ -12,12 +12,21 @@ $navbar-height: 8rem;
 // Footer
 $footer-padding: 3rem 1.5rem;
 
+// Forms
+
 // Import only what you need from Bulma
 @import "../node_modules/bulma/bulma.sass";
 
 // Custom CSS rules below...
+
+// Navbar branc
 .navbar-brand img {
     max-height: 100px;
     // height: 100px;
     max-width: unset;
+}
+
+// Forms
+.control.is-flex.is-flex-direction-column .radio {
+    margin-left: 0;
 }

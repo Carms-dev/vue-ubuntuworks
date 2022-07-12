@@ -1,37 +1,35 @@
 <template>
-  <div>
-    <div class="row p-3">
-      <!-- Form -->
-      <b-form @submit="onFormSubmit" class="col-12 col-lg-8 offset-lg-2 bg-light border mb-5 p-4 p-lg-5">
-        <div
-          class="my-5 question"
-          v-for="(question, index) in questions"
-          :key="question.key"
-        >
-          <Question :form="form" :question="question" :index="index" />
-
-          <InfoPopover
-            v-if="question.help"
-            :content="question.help"
-            :title="'Information'"
-          />
-        </div>
-        <!-- buttons -->
-        <b-button type="submit" variant="primary">Next &raquo;</b-button>
-      </b-form>
-        <b-card class="mt-3" header="Form Data Result">
-          <pre class="m-0">{{ form }}</pre>
-        </b-card>
+  <!-- Form -->
+  <form @submit="onFormSubmit" action="" class="py-4">
+    <div
+      class="field"
+      v-for="(question, index) in questions"
+      :key="question.key"
+    >
+      <FormQuestion :form="form" :question="question" :index="index" />
     </div>
-  </div>
+
+    <!-- Submit -->
+    <div class="control">
+      <button type="submit" class="button is-warning">Next &raquo;</button>
+    </div>
+  </form>
 </template>
 
 <script setup>
 // import db from "../firebaseDb";
 import questions from "../data/basicQuestions.json";
-import basicQuestions from "../data/basicQuestions";
+import FormQuestion from "../components/FormQuestion.vue";
 
-console.log('Questions -->', basicQuestions);
+const form = questions.reduce((a, v) => (
+  {...a, [v.label]: v.initial }
+), {});
+
+function onFormSubmit(event) {
+  event.preventDefault();
+
+  console.log("SUBMITTED!");
+}
 </script>
 
 <!-- <script>
