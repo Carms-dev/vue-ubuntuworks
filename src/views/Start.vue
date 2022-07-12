@@ -1,4 +1,12 @@
 <template>
+  <section class="section">
+    <div class="container is-max-desktop p-6">
+      <div class="box p-6">
+        <StartForm />
+      </div>
+    </div>
+  </section>
+
   <div class="row p-3">
     <!-- Form -->
     <b-form @submit="onFormSubmit" class="col-12 col-lg-8 offset-lg-2 bg-light border mb-5 p-4 p-lg-5">
@@ -25,6 +33,10 @@
       </b-card>
   </div>
 </template>
+
+<script setup>
+import StartForm from '../components/StartForm.vue';
+</script>
 
 <!-- <script>
 import db from "../firebaseDb";
