@@ -1,13 +1,28 @@
 <template>
   <!-- Form -->
   <form @submit="onFormSubmit" action="" class="py-4">
-    <div
+    <!-- Test input -->
+    <label
+      for="test-input"
+      class="label is-medium mb-5"
+    >Test Input</label>
+    <div class="control">
+
+      <!-- Text -->
+      <input
+        class="input is-medium is-rounded"
+        id="test-input"
+        type="text"
+      >
+    </div>
+
+    <!-- <div
       class="field"
       v-for="(question, index) in questions"
       :key="question.key"
     >
       <FormQuestion :form="form" :question="question" :index="index" />
-    </div>
+    </div> -->
 
     <!-- Submit -->
     <div class="control">
@@ -20,6 +35,12 @@
 // import db from "../firebaseDb";
 import questions from "../data/basicQuestions.json";
 import FormQuestion from "../components/FormQuestion.vue";
+import { Form, Field } from 'vee-validate';
+import * as Yup from 'yup';
+
+const schema = Yup.object().shape({
+  testInput: Yup.string().required('YOU MUST ENTER DATA, HUMAN.')
+});
 
 const form = questions.reduce((a, v) => (
   {...a, [v.label]: v.initial }
