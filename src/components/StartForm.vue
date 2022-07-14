@@ -1,28 +1,34 @@
 <template>
   <!-- Form -->
-  <form @submit="onFormSubmit" action="" class="py-4">
+  <Form
+    @submit="onFormSubmit"
+    :validation-schema="schema"
+    v-slot="{ errors }"
+    action=""
+    class="py-4"
+  >
     <!-- Test input -->
-    <label
-      for="test-input"
-      class="label is-medium mb-5"
-    >Test Input</label>
+    <label for="test-input" class="label is-medium mb-5">Test Input</label>
     <div class="control">
-
       <!-- Text -->
-      <input
+      <Field
         class="input is-medium is-rounded"
+        :class="{ 'is-invalid': errors.testInput }"
+        name="testInput"
         id="test-input"
         type="text"
       >
+      </Field>
+      <div class="invalid-feedback">{{errors.testInput}}</div>
     </div>
 
     <!-- <div
-      class="field"
-      v-for="(question, index) in questions"
-      :key="question.key"
-    >
-      <FormQuestion :form="form" :question="question" :index="index" />
-    </div> -->
+        class="field"
+        v-for="(question, index) in questions"
+        :key="question.key"
+        >
+            <FormQuestion :form="form" :question="question" :index="index" />
+        </div> -->
 
     <!-- Submit -->
     <div class="control">
@@ -35,21 +41,18 @@
 // import db from "../firebaseDb";
 import questions from "../data/basicQuestions.json";
 import FormQuestion from "../components/FormQuestion.vue";
-import { Form, Field } from 'vee-validate';
-import * as Yup from 'yup';
+import { Form, Field } from "vee-validate";
+import * as Yup from "yup";
 
 const schema = Yup.object().shape({
-  testInput: Yup.string().required('YOU MUST ENTER DATA, HUMAN.')
+  testInput: Yup.string().min(16).required("YOU MUST ENTER DATA, HUMAN."),
 });
 
-const form = questions.reduce((a, v) => (
-  {...a, [v.label]: v.initial }
-), {});
+const form = questions.reduce((a, v) => ({ ...a, [v.label]: v.initial }), {});
 
-function onFormSubmit(event) {
-  event.preventDefault();
-
-  console.log("SUBMITTED!");
+function onFormSubmit(values) {
+  // display form values on success
+  alert("SUCCESS!! :-)\n\n" + JSON.stringify(values, null, 4));
 }
 </script>
 
