@@ -6,9 +6,7 @@
           Let's set it up! 
         </h1>
         <p class="block is-size-4 has-text-grey">Gather the basic information about your event and select relevant areas of disabilities!</p>
-
-        <!-- Form -->
-        <StartForm />
+        <DynamicForm/>
       </div>
     </div>
   </section>
@@ -16,5 +14,5 @@
 </template>
 
 <script setup>
-import StartForm from '../components/StartForm.vue';
+import DynamicForm from '../components/DynamicForm.vue';
 </script>

@@ -72,61 +72,8 @@ for (let question of questions) {
 
 const schema = Yup.object().shape(questionSchema);
 
-// const form = questions.reduce((a, v) => ({ ...a, [v.label]: v.initial }), {});
-
 function onFormSubmit(values) {
   // display form values on success
   alert("SUCCESS!! :-)\n\n" + JSON.stringify(values, null, 4));
 }
 </script>
-
-<!-- <script>
-import db from "../firebaseDb";
-import questions from "../data/basicQuestions";
-import InfoPopover from "../components/InfoPopover.vue";
-import Question from "../components/Question.vue";
-
-export default {
-  data() {
-    return {
-      questions: questions,
-      form: questions.reduce((a, v) => ({ ...a, [v.label]: v.initial }), {}),
-    };
-  },
-  components: {
-    InfoPopover,
-    Question,
-  },
-  methods: {
-    onFormSubmit(event) {
-      event.preventDefault();
-
-      const moduleQuestionKey = this.questions.find(question => question.key === "report_modules").label
-
-      const selectedModuleKeys = this.form[moduleQuestionKey];
-
-      delete this.form[moduleQuestionKey];
-
-      const report = {
-        basic: this.form,
-        selectedModuleKeys,
-      };
-      db.collection("reports")
-        .add(report)
-        .then((res) => {
-          // Go to first module
-          this.$router.push(
-            `/reports/${res.id}/modules/${report.selectedModuleKeys[0]}`
-          );
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
-};
-</script>
-
-<style lang="scss" scoped>
-
-</style> -->
