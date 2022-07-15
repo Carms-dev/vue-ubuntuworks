@@ -5,7 +5,10 @@
     @submit="onFormSubmit"
   >
     <template #afterForm>
-      <button>Submit</button>
+      <!-- Submit -->
+      <div class="control">
+        <button type="submit" class="button is-warning">Next &raquo;</button>
+      </div>
     </template>
   </SchemaFormWithValidation>
 </template>

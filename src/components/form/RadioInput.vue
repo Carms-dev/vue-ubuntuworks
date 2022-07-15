@@ -14,8 +14,9 @@
           type="radio"
           class="mr-3"
           :name="uuid"
-          :value="modelValue"
-          @input="$emit('update:modelValue', $event.target.value)"
+          :value="option"
+          :checked="option === modelValue"
+          @input="$emit('update:modelValue', $event.target.value);"
         >
         {{ option }}
       </label>
