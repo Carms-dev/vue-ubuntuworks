@@ -5,12 +5,12 @@ export default {
       questions: [
         {
           label: "What language(s) is the event hosted in?",
-          type: "input",
+          type: "text-input",
           initial: "",
         },
         {
           label: "What kind of language translation will be available?",
-          type: "input",
+          type: "text-input",
           initial: "",
           help: "e.g. translation headsets, whisper translation, subtitles on zoom presentations etc",
         },

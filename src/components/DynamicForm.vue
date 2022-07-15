@@ -1,193 +1,124 @@
 <template>
-  <Form
+  <SchemaFormWithValidation
+    :schema="testSchema"
+    schemaRowClasses="mb-6"
     @submit="onFormSubmit"
-    :validation-schema="schema"
-    v-slot="{ errors }"
-    action=""
-    class="py-4"
   >
-    <!-- Test input -->
-    <!-- <label for="test-input" class="label is-medium mb-5">Test Input</label>
-    <div class="control"> -->
-      <!-- Text -->
-      <!-- <Field
-        class="input is-medium is-rounded"
-        :class="{ 'is-invalid': errors.testInput }"
-        name="testInput"
-        id="test-input"
-        type="text"
-      >
-      </Field>
-      <div class="invalid-feedback">{{errors.testInput}}</div>
-    </div> -->
-
-    <div
-      class="field"
-      v-for="(question, index) in questions"
-      :key="question.key"
-    >
-      <!-- TODO: add form validation (with vuelidate?) -->
-
-      <div class="mb-6">
-        <label
-          :for="question.key"
-          class="label is-medium mb-5"
-        >{{ question.label }}</label>
-        <div class="control">
-
-          <!-- Text -->
-          <Field
-            class="input is-medium is-rounded"
-            v-if="question.type === 'input'"
-            :id="question.key"
-            :name="question.key"
-            type="text"
-            v-model="schema[question.key]"
-          />
-
-          <!-- Radio -->
-          <div
-            class="control is-flex is-flex-direction-column"
-            v-else-if="question.type === 'multiple-choice'"
-          >
-            <label
-              class="radio block"
-              v-for="option in question.options"
-            >
-              <Field
-                type="radio"
-                :name="question.key"
-                v-model="schema[question.key]"
-                :value="option"
-              />
-              {{ option }}
-            </label>
-          </div>
-
-          <!-- Checkbox -->
-          <div
-            class="control is-flex is-flex-direction-column"
-            v-else-if="question.type === 'multi-select'"
-            :id="question.key"
-            :aria-describedby="question.key"
-          >
-            <label
-              class="checkbox block"
-              v-for="option in question.options"
-              :key="question.key + '-' + option"
-            >
-              <Field
-                :id="question.key + '-' + option"
-                v-model="schema[question.label]"
-                type="checkbox"
-                :name="question.key"
-              />
-              {{ option }}
-            </label>
-          </div>
-
-          <!-- Select -->
-          <div
-            class="select"
-            v-else-if="question.type === 'select'"
-            :id="question.key"
-          >
-            <select
-              v-model="schema[question.key]"
-            >
-              <option disabled selected>Chooze one plzkthx</option> <!-- FIXME -->
-              <option
-                v-for="option in question.options"
-                :value="option"
-              >{{ option }}</option>
-            </select>
-          </div>
-
-          <!-- Custom Checkbox for Module Selection -->
-          <div
-            class="columns has-text-centered field"
-            v-else-if="question.type === 'module-checkbox-group'"
-          >
-            <div
-              class="column"
-              v-for="module in modules"
-              :key="module.key"
-            >
-              <label class="control checkbox">
-                <Field
-                  :id="'input-' + index"
-                  v-model="form[question.label]"
-                  type="checkbox"
-                  :name="question.key"
-                />
-                <img
-                  :src="getImageUrl(module.image.file)"
-                  :alt="module.image.alt"
-                  class="my-2"
-                >
-                <p class="is-size-5">{{ module.name }}</p>
-              </label>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Submit -->
-    <div class="control">
-      <button type="submit" class="button is-warning">Next &raquo;</button>
-    </div>
-  </Form>
+    <template #afterForm>
+      <button>Submit</button>
+    </template>
+  </SchemaFormWithValidation>
 </template>
 
 <script setup>
-import modules from "../data/modules.json";
-// import db from "../firebaseDb";
-import questions from "../data/basicQuestions.json";
-import { Form, Field } from "vee-validate";
-import * as Yup from "yup";
+import { SchemaForm, SchemaWizard, SchemaFormFactory, useSchemaForm } from 'formvuelate'
+import VeeValidatePlugin from '@formvuelate/plugin-vee-validate';
+import TextInput from './form/TextInput.vue';
+import * as Yup from 'yup';
+// import basicQuestions from "../data/basicQuestions.json";
+import RadioInput from './form/RadioInput.vue';
+import SelectInput from './form/SelectInput.vue';
+import ModuleCheckBoxInput from './form/ModuleCheckBoxInput.vue';
 
-defineProps({
-  question: Object,
-  form: Object,
-  index: Number
-});
+const SchemaFormWithValidation = SchemaFormFactory([
+  VeeValidatePlugin()
+]);
 
-const form = {};
-const questionSchema = {};
+const formData = {};
+useSchemaForm(formData);
 
-// Populate 'form' object and validation schema
-for (let question of questions) {
-  form[question.label] = question.label;
-  
-  if (question.required) {
-    questionSchema[question.key] = Yup;
-    
-    switch(question.type) {
-      case "input":
+const basicQuestionsSchema = [
+  {
+    model: 'event_name',
+    component: TextInput,
+    label: 'Event Name',
+    validations: Yup.string().required()
+  },
+  {
+    model: 'event_type',
+    component: TextInput,
+    label: 'Event Type',
+    validations: Yup.string().required()
+  }
+];
+
+const basicQuestions = [
+  {
+    "key": "event_name",
+    "description": "the name of your event",
+    "label": "What's the event name?",
+    "type": "text-input",
+    "initial": "",
+    "required": true
+  },
+  {
+    "key": "event_type",
+    "label": "What's the event type?",
+    "description": "the type of your event",
+    "type": "text-input",
+    "initial": "",
+    "required": true
+  },
+]
+
+const testSchema = buildFormSchema(basicQuestions);
+
+function onFormSubmit() {  
+  console.log('submitted!');
+}
+
+/**
+ * Take in array of objects with form question data and convert to
+ * schema for formvuelate
+ */
+function buildFormSchema(questionList) {
+  return questionList.map(question => {
+    const fieldSchema = {
+      model: question.key,
+      label: question.label,
+      validations: Yup
+    };
+
+    // Map fields based on type
+    switch (question.type) {
+      case "text-input":
+        fieldSchema.component = TextInput;
+        fieldSchema.validations = fieldSchema
+          .validations
+          .string()
+        break;
       case "multiple-choice":
-        questionSchema[question.key] = questionSchema[question.key].string(); 
+        fieldSchema.component = RadioInput;
+        fieldSchema.validations = fieldSchema
+          .validations
+          .string();
         break;
       case "multi-select":
-      case "module-checkbox-options":
-      default:
-        // TODO: sort out other field types
+        fieldSchema.component = SelectInput;
+        fieldSchema.validations = fieldSchema
+          .validations
+          .array();
+        break;
+      case "module-checkbox-group":
+        fieldSchema.component = ModuleCheckBoxInput;
+        fieldSchema.validations = fieldSchema
+          .validations
+          .array();
         break;
     }
 
-    questionSchema[question.key] = questionSchema[question.key].required();
-  }
+    const requiredMessage = question.hasOwnProperty('description')
+      ? `Psst! Don't forget to enter ${question.description}`
+      : undefined;
+
+    if (question.required) {
+      fieldSchema.required = true;
+      fieldSchema.validations = fieldSchema.validations.required(requiredMessage);
+    }
+
+    return fieldSchema;
+  });
 }
 
-const schema = Yup.object().shape(questionSchema);
 
-function onFormSubmit(values) {
-  // display form values on success
-  alert("SUCCESS!! :-)\n\n" + JSON.stringify(values, null, 4));
-}
-
-function getImageUrl(fileName) {
-  return new URL(`../assets/${fileName}`, import.meta.url).href
-}
 </script>

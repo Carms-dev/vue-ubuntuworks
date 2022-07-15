@@ -2,7 +2,7 @@
   {
     "key": "event_name",
     "label": "What's the event name?",
-    "type": "input",
+    "type": "text-input",
     "initial": "",
     "required": true
   },
@@ -18,7 +18,7 @@
   {
     "key": "point_person",
     "label": "Contact information for this accessibility point person?",
-    "type": "input",
+    "type": "text-input",
     "initial": ""
   },
   {
