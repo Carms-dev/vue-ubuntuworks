@@ -20,36 +20,8 @@
 
 <script setup>
 import { computed } from 'vue';
+import { formFieldProps, useLabelHtml } from './setupfields';
 
-const props = defineProps({
-  modelValue: {
-    type: String,
-    required: true,
-    default: ""
-  },
-  label: {
-    type: String,
-    required: true
-  },
-  uuid: {
-    type: Number,
-    default: 0,
-  },
-  required: {
-    type: Boolean,
-    default: false,
-  },
-  validation: {
-    type: Object,
-    default: {}
-  }
-});
-
-const labelHtml = computed(() => {
-  const requiredHtml =
-    props.required
-      ? ' <span class="label--required">*</span>'
-      : "";
-  return props.label + requiredHtml;
-});
+const props = defineProps(formFieldProps);
+const { labelHtml } = useLabelHtml(props);
 </script>
