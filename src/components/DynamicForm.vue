@@ -1,6 +1,7 @@
 <template>
   <SchemaFormWithValidation
     :schema="basicQuestionsSchema"
+    :preventModelCleanupOnSchemaChange="true"
     schemaRowClasses="mb-6"
     @submit="onFormSubmit"
     class="mb-6"
@@ -29,7 +30,10 @@ import VeeValidatePlugin from '@formvuelate/plugin-vee-validate';
 import { useFormSchema } from './form/buildformschema';
 import { ref, unref } from 'vue';
 import db from '../firebase/init';
-import { doc, getDoc, collection, addDoc, setLogLevel, Timestamp, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, collection, addDoc, setLogLevel, serverTimestamp } from "firebase/firestore";
+import { useStorage } from '@vueuse/core';
+import { useFetchFormData } from './form/fetchFormData';
+import router from '../router';
 
 const props = defineProps({
   fieldList: {
@@ -43,7 +47,15 @@ const SchemaFormWithValidation = SchemaFormFactory([
   VeeValidatePlugin()
 ]);
 
-const formData = ref({});
+// const formData = ref(useFetchFormData());
+// const reportId = useStorage('report-id', "");
+
+const { reportId, formData } = await useFetchFormData();
+
+// const formData = ref({});
+
+console.log(formData);
+
 useSchemaForm(formData);
 
 const basicQuestionsSchema = useFormSchema(props.fieldList);
@@ -57,6 +69,10 @@ async function onFormSubmit() {
   try {
     const reportRef = await addDoc(collection(db, "reports"), report);
     console.log("Report written with ID", reportRef.id);
+    reportId.value = reportRef.id;
+    router.push(
+      `/reports/${reportId}/modules/audio_visual`
+    );
   }
   catch(error) {
     console.error('Error writing report', error);

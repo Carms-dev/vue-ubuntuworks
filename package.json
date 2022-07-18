@@ -17,6 +17,7 @@
   "devDependencies": {
     "@formvuelate/plugin-vee-validate": "^3.9.1",
     "@vitejs/plugin-vue": "^2.3.3",
+    "@vueuse/core": "^8.9.4",
     "autoprefixer": "^10.4.7",
     "bulma": "^0.9.4",
     "dart-sass": "^1.25.0",

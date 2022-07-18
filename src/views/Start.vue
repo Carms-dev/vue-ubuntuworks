@@ -7,8 +7,10 @@
         </h1>
         <p class="block is-size-4 has-text-grey">Gather the basic information about your event and select relevant areas of disabilities!</p>
 
-        <!-- Dynamic form -->
-        <DynamicForm :fieldList="basicQuestionList"/>
+        <Suspense>
+          <!-- Dynamic form -->
+          <DynamicForm :fieldList="basicQuestionList"/>
+        </Suspense>
       </div>
     </div>
   </section>
@@ -18,4 +20,5 @@
 <script setup>
 import DynamicForm from '../components/DynamicForm.vue';
 import basicQuestionList from "../data/basicQuestions.json";
+import { Suspense } from 'vue';
 </script>

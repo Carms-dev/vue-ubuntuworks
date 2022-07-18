@@ -13,7 +13,7 @@ export function useFormSchema(questionList) {
     const fieldSchema = {
       model: question.key,
       label: question.label,
-      default: question.initial,
+      // default: question.initial,
       validations: Yup,
     };
 
