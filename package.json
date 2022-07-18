@@ -21,6 +21,7 @@
     "bulma": "^0.9.4",
     "dart-sass": "^1.25.0",
     "dot-env": "^0.0.1",
+    "firebase": "^9.9.0",
     "formvuelate": "^3.9.1",
     "sass": "^1.52.1",
     "vee-validate": "^4.5.8",

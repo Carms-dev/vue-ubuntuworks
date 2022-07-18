@@ -26,9 +26,18 @@
 <script setup>
 import { SchemaFormFactory, useSchemaForm } from 'formvuelate'
 import VeeValidatePlugin from '@formvuelate/plugin-vee-validate';
-import basicQuestionList from "../data/basicQuestions.json";
 import { useFormSchema } from './form/buildformschema';
-import { ref } from 'vue';
+import { ref, unref } from 'vue';
+import db from '../firebase/init';
+import { doc, getDoc, collection, addDoc, setLogLevel, Timestamp, serverTimestamp } from "firebase/firestore";
+
+const props = defineProps({
+  fieldList: {
+    type: [Array, Object],
+    required: true,
+    default: []
+  }
+});
 
 const SchemaFormWithValidation = SchemaFormFactory([
   VeeValidatePlugin()
@@ -37,10 +46,20 @@ const SchemaFormWithValidation = SchemaFormFactory([
 const formData = ref({});
 useSchemaForm(formData);
 
-const basicQuestionsSchema = useFormSchema(basicQuestionList)
+const basicQuestionsSchema = useFormSchema(props.fieldList);
 
-function onFormSubmit() {  
-  console.log('submitted!');
-  console.log(formData);
+// setLogLevel('debug');
+
+async function onFormSubmit() {
+  const report = formData.value;
+  report.created = serverTimestamp();
+
+  try {
+    const reportRef = await addDoc(collection(db, "reports"), report);
+    console.log("Report written with ID", reportRef.id);
+  }
+  catch(error) {
+    console.error('Error writing report', error);
+  }
 }
 </script>
