@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
 import { formFieldProps, useLabelHtml } from './setupfields';
 
 const props = defineProps(formFieldProps);
