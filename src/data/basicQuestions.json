@@ -1,6 +1,7 @@
 [
   {
     "key": "event_name",
+    "description": "the name of your event",
     "label": "What's the event name?",
     "type": "text-input",
     "initial": "",

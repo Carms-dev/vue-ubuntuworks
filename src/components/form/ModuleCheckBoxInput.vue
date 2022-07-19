@@ -18,6 +18,8 @@
             type="checkbox"
             :name="uuid"
             :value="module.key"
+            :checked="moduleSelected(module.key)"
+            :disabled="module.disabled"
             @input="update(module.key, $event.target.checked);"
           >
           <img
@@ -35,10 +37,15 @@
 <script setup>
 import { useFieldProps, useLabelHtml } from './setupFields';
 
-const props = defineProps(useFieldProps(Array, []));
+// TODO: fix the default for this field.. may need some refactoring
+const props = defineProps(useFieldProps(Array, ["audio_visual", "communication"]));
 const { labelHtml } = useLabelHtml(props);
 
 const emit = defineEmits(['update:modelValue']);
+
+function moduleSelected(moduleKey) {
+  return props.modelValue.indexOf(moduleKey) !== -1;
+}
 
 function update(moduleKey, checked) {
   const moduleIndex = props.modelValue.indexOf(moduleKey);

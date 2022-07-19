@@ -1,6 +1,6 @@
 import { useStorage } from '@vueuse/core';
 import db from '../../firebase/init';
-import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, updateDoc, addDoc, collection } from "firebase/firestore";
 import { computed, ref, watch } from 'vue';
 
 const reportId = useStorage('report-id', "");
@@ -23,18 +23,6 @@ export async function useFetchFormData() {
       reportId.value = "";
     }
   }
-
-  // watch(formData.value, () => {
-  //   if (JSON.stringify(formData.value) === formDataSnap.value) {
-  //     console.log('samesame!');
-  //     console.log()
-  //   } else {
-  //     console.log('so deeeeeefferent!');
-  //   }
-  //   // console.log(JSON.stringify(oldFormData));
-  //   // console.log(JSON.stringify(newFormData));
-  //   // console.log("CH-CH-CH-CHANGES:", oldFormData, newFormData);
-  // });
 
   return { reportId, formData, formDataSnap };
 }

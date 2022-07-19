@@ -46,11 +46,12 @@ export function useFormSchema(questionList) {
     }
 
     const requiredMessage = question.hasOwnProperty("description")
-      ? `Psst! Don't forget to enter ${question.description}`
+      ? `Psst! Don't forget to enter ${question.description}.`
       : undefined;
 
     if (question.required) {
       fieldSchema.required = true;
+      console.log('msg?', requiredMessage)
       fieldSchema.validations =
         fieldSchema.validations.required(requiredMessage);
     }
