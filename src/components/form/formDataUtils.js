@@ -1,20 +1,21 @@
 import { useStorage } from '@vueuse/core';
 import db from '../../firebase/init';
 import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const reportId = useStorage('report-id', "");
 const formData = ref({});
+let formDataSnap = ref("");
 
 export async function useFetchFormData() {
   if (reportId.value) {
-    console.log("here!");
     const reportRef = doc(db, 'reports', reportId.value);
     const reportSnap = await getDoc(reportRef);
 
     if (reportSnap.exists()) {
       formData.value = reportSnap.data();
-      console.log(formData.value);
+      // Take stringified "snapshot" of OG form data retrieved to compare upon later
+      formDataSnap.value = JSON.stringify(formData.value);
     } else {
       console.log("Couldn't retrieve report! :(");
       // remove report id value so new doc can be created
@@ -23,12 +24,29 @@ export async function useFetchFormData() {
     }
   }
 
-  return { reportId, formData };
+  // watch(formData.value, () => {
+  //   if (JSON.stringify(formData.value) === formDataSnap.value) {
+  //     console.log('samesame!');
+  //     console.log()
+  //   } else {
+  //     console.log('so deeeeeefferent!');
+  //   }
+  //   // console.log(JSON.stringify(oldFormData));
+  //   // console.log(JSON.stringify(newFormData));
+  //   // console.log("CH-CH-CH-CHANGES:", oldFormData, newFormData);
+  // });
+
+  return { reportId, formData, formDataSnap };
 }
 
 
 export async function useReportAddOrUpdate() {
   const report = formData.value;
+
+  if (JSON.stringify(report) === formDataSnap.value) {
+    console.log("Nuffin' to do guv.");
+    return;
+  }
 
   try {
     if (!reportId.value) {

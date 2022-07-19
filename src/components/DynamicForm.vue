@@ -45,7 +45,7 @@ const SchemaFormWithValidation = SchemaFormFactory([
   VeeValidatePlugin()
 ]);
 
-const { reportId, formData } = await useFetchFormData();
+const { reportId, formData, formDataSnap } = await useFetchFormData();
 useSchemaForm(formData);
 const basicQuestionsSchema = useFormSchema(props.fieldList);
 
