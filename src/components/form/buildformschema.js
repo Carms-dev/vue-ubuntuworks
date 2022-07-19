@@ -3,16 +3,21 @@ import TextInput from './TextInput.vue';
 import RadioInput from './RadioInput.vue';
 import SelectInput from './SelectInput.vue';
 import ModuleCheckBoxInput from './ModuleCheckBoxInput.vue';
+import modules from '../../data/modules.json';
+import { ref } from 'vue';
+
+const formData = ref({});
 
 /**
  * Take in array of objects with form question data and convert to
- * schema for formvuelate
+ * schema / component props for formvuelate
  */
 export function useFormSchema(questionList) {
   return questionList.map((question) => {
     const fieldSchema = {
       model: question.key,
       label: question.label,
+      type: question.type,
       // default: question.initial,
       validations: Yup,
     };
@@ -34,6 +39,7 @@ export function useFormSchema(questionList) {
         fieldSchema.validations = fieldSchema.validations.array();
         break;
       case "module-checkbox-group":
+        fieldSchema.modules = useModuleImgUrls();
         fieldSchema.component = ModuleCheckBoxInput;
         fieldSchema.validations = fieldSchema.validations.array();
         break;
@@ -51,4 +57,16 @@ export function useFormSchema(questionList) {
 
     return fieldSchema;
   });
+}
+
+function getImageUrl(fileName) {
+  return new URL(`../../assets/${fileName}`, import.meta.url).href
+}
+
+function useModuleImgUrls() {
+  return modules.map((module) => {
+    const moduleWithUrl = Object.assign({}, module);
+    moduleWithUrl.image.file = getImageUrl(module.image.file);
+    return moduleWithUrl;
+  })
 }

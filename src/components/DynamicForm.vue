@@ -28,10 +28,7 @@
 import { SchemaFormFactory, useSchemaForm } from 'formvuelate'
 import VeeValidatePlugin from '@formvuelate/plugin-vee-validate';
 import { useFormSchema } from './form/buildformschema';
-import db from '../firebase/init';
-import { collection, addDoc, serverTimestamp, doc, updateDoc } from "firebase/firestore";
 import { useFetchFormData, useReportAddOrUpdate } from './form/formDataUtils';
-import router from '../router';
 
 const props = defineProps({
   fieldList: {

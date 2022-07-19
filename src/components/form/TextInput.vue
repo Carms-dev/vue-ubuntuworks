@@ -19,8 +19,8 @@
 </template>
 
 <script setup>
-import { formFieldProps, useLabelHtml } from './setupfields';
+import { useFieldProps, useLabelHtml } from './setupFields';
 
-const props = defineProps(formFieldProps);
+const props = defineProps(useFieldProps(String, ""));
 const { labelHtml } = useLabelHtml(props);
 </script>
