@@ -51,9 +51,7 @@ export function useFormSchema(questionList) {
 
     if (question.required) {
       fieldSchema.required = true;
-      console.log('msg?', requiredMessage)
-      fieldSchema.validations =
-        fieldSchema.validations.required(requiredMessage);
+      fieldSchema.validations = fieldSchema.validations.required(requiredMessage);
     }
 
     return fieldSchema;
@@ -67,7 +65,7 @@ function getImageUrl(fileName) {
 function useModuleImgUrls() {
   return modules.map((module) => {
     const moduleWithUrl = Object.assign({}, module);
-    moduleWithUrl.image.file = getImageUrl(module.image.file);
+    moduleWithUrl.image.url = getImageUrl(module.image.file);
     return moduleWithUrl;
   })
 }

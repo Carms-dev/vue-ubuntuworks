@@ -1,7 +1,7 @@
 import { useStorage } from '@vueuse/core';
 import db from '../../firebase/init';
 import { doc, getDoc, serverTimestamp, updateDoc, addDoc, collection } from "firebase/firestore";
-import { computed, ref, watch } from 'vue';
+import { ref } from 'vue';
 
 const reportId = useStorage('report-id', "");
 const formData = ref({});
@@ -49,12 +49,11 @@ export async function useReportAddOrUpdate() {
       await updateDoc(reportRef, report);
       console.log("Updated report with ID", reportId);
     }
-    // router.push(
-    //   // TODO: factor in proper module redirection
-    //   `/reports/${reportId}/modules/audio_visual`
-    // );
+
+    return true;
   }
   catch(error) {
     console.error('Error writing report', error);
+    return false;
   }
 }

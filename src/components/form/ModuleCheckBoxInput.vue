@@ -23,7 +23,7 @@
             @input="update(module.key, $event.target.checked);"
           >
           <img
-            :src="module.image.file"
+            :src="module.image.url"
             :alt="module.image.alt"
             class="my-2"
           >

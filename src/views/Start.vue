@@ -9,7 +9,10 @@
 
         <Suspense>
           <!-- Dynamic form -->
-          <DynamicForm :fieldList="basicQuestionList"/>
+          <DynamicForm
+            :field-list="basicQuestionList"
+            @form-submit="nextPage"
+          />
         </Suspense>
       </div>
     </div>
@@ -21,4 +24,13 @@
 import DynamicForm from '../components/DynamicForm.vue';
 import basicQuestionList from "../data/basicQuestions.json";
 import { Suspense } from 'vue';
+import router from '../router';
+
+function nextPage(reportId) {
+  console.log('FORM SUBMIT FOR', reportId);
+  router.push(
+    // TODO: factor in proper module redirection
+    `/reports/${reportId}/modules/audio_visual`
+  );
+}
 </script>

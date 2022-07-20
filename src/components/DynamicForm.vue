@@ -38,6 +38,8 @@ const props = defineProps({
   }
 });
 
+const emit = defineEmits(['formSubmit']);
+
 const SchemaFormWithValidation = SchemaFormFactory([
   VeeValidatePlugin()
 ]);
@@ -47,6 +49,12 @@ useSchemaForm(formData);
 const basicQuestionsSchema = useFormSchema(props.fieldList);
 
 async function onFormSubmit() {
-  useReportAddOrUpdate();
+  const submitSuccess = await useReportAddOrUpdate();
+
+  if (submitSuccess) {
+    emit('formSubmit', reportId.value);
+  } else {
+    console.log('NOPE')
+  }
 }
 </script>
