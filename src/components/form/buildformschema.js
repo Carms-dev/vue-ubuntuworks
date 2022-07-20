@@ -3,12 +3,12 @@ import TextInput from './TextInput.vue';
 import RadioInput from './RadioInput.vue';
 import SelectInput from './SelectInput.vue';
 import ModuleCheckBoxInput from './ModuleCheckBoxInput.vue';
-import modules from '../../data/modules.json';
 import { useModules } from '../../data/modules';
 
 /**
  * Take in array of objects with form question data and convert to
  * schema / component props for formvuelate
+ * TODO: replace most of this functionality with formvuelate lookup plugin
  */
 export function useFormSchema(questionList) {
   return questionList.map((question) => {

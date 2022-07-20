@@ -31,7 +31,7 @@ import { useFormSchema } from './form/buildformschema';
 import { useFetchFormData, useReportAddOrUpdate } from './form/formDataUtils';
 
 const props = defineProps({
-  fieldList: {
+  formSections: {
     type: [Array, Object],
     required: true,
     default: []

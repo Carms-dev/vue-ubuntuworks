@@ -10,7 +10,7 @@
         <Suspense>
           <!-- Dynamic form -->
           <DynamicForm
-            :field-list="basicQuestionList"
+            :form-sections="basicQuestions"
             @form-submit="nextPage"
           />
         </Suspense>
@@ -22,7 +22,7 @@
 
 <script setup>
 import DynamicForm from '../components/DynamicForm.vue';
-import basicQuestionList from "../data/basicQuestions.json";
+import basicQuestions from "../data/basicQuestions.json";
 import { Suspense } from 'vue';
 import router from '../router';
 

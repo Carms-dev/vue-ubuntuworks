@@ -29,11 +29,7 @@
               v-for="(module, index) in chosenModules"
               :key="module.key"
             >
-            <div v-if="checkSelected(index)">
-<ModuleForm
-                :module="module"
-              />
-            </div>
+              <ModuleForm :module="module" :questions="module.questions" v-if="checkSelected(index)" />
             </template>
           </div>
         </div>
