@@ -6,9 +6,11 @@
         <div class="column is-one-quarter">
           <div class="module-buttons is-flex are-large is-flex-direction-column is-align-items-start">
             <button
-              v-for="module in selectedModules"
+              v-for="(module, index) in chosenModules"
               :key="module.key"
               class="box p-5 mb-4 is-clickable"
+              :class="{ selected: index === selectedIndex }"
+              @click="switchModuleView(index)"
             >
               <p class="is-size-5 mb-3">{{ module.name }}</p>
               <img
@@ -22,7 +24,17 @@
         <!-- Right Panel -->
         <div class="column">
           <div class="box module-form-container p-6">
-
+            <!-- Module Forms -->
+            <template
+              v-for="(module, index) in chosenModules"
+              :key="module.key"
+            >
+            <div v-if="checkSelected(index)">
+<ModuleForm
+                :module="module"
+              />
+            </div>
+            </template>
           </div>
         </div>
       </div>
@@ -32,11 +44,21 @@
 
 <script setup>
 import { useModules } from '../data/modules';
+import ModuleForm from '../components/ModuleForm.vue';
+import { computed, ref } from 'vue';
 
-const selectedModules = useModules();
-const currentModule = selectedModules[0];
+const chosenModules = useModules();
+let selectedIndex = ref(0);
+const selectedModule = computed(() => {
+  return chosenModules[selectedIndex.value];
+});
+
+function switchModuleView(moduleIndex) {
+  console.log('SWITCHING FROM', selectedIndex.value, 'TO', moduleIndex);
+  selectedIndex.value = moduleIndex;
+}
+
+function checkSelected(moduleIndex) {
+  return moduleIndex === selectedIndex.value;
+}
 </script>
-
-<style scoped>
-
-</style>

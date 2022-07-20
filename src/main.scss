@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 // Import a Poppins Font
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
 // Custom variable values here...
 
@@ -21,31 +21,32 @@ $footer-padding: 3rem 1.5rem;
 
 // Navbar branc
 .navbar-brand img {
-    max-height: 100px;
-    // height: 100px;
-    max-width: unset;
+  max-height: 100px;
+  // height: 100px;
+  max-width: unset;
 }
 
 // Forms
 .control.is-flex.is-flex-direction-column .radio {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .module-buttons button {
-    border: none;
-    opacity: 0.5;
-    transition: all 0.2s ease-in-out;
+  border: 1px solid $background;;
+  opacity: 0.5;
+  transition: all 0.2s ease-in-out;
 
-    &.selected {
-        opacity: 1;
-        border: 5px solid $primary;
-      }
-      &:hover {
-        opacity: 1;
-        color: $dark;
-      }
+  &.selected {
+    opacity: 1;
+    border-color: $primary;
+  }
+
+  &:hover {
+    opacity: 1;
+    color: $dark;
+  }
 }
 
 .module-form-container {
-    min-height: 100%;
+  min-height: 100%;
 }
