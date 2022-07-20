@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container is-max-desktop">
-      <div class="box p-6 mb-6">
+      <div class="box p-6">
         <h1 class="title is-1">
           Let's set it up! 
         </h1>

@@ -4,7 +4,12 @@ import { doc, getDoc, serverTimestamp, updateDoc, addDoc, collection } from "fir
 import { ref } from 'vue';
 
 const reportId = useStorage('report-id', "");
-const formData = ref({});
+const formData = useStorage('report-data', {});
+
+if (!reportId.value) {
+  formData.value = {};
+}
+
 let formDataSnap = ref("");
 const emit = () => {}
 
@@ -30,9 +35,9 @@ export async function useFetchFormData() {
 
 
 export async function useReportAddOrUpdate() {
+  const report = formData.value;
+
   if (JSON.stringify(report) !== formDataSnap.value) {
-    const report = formData.value;
-    
     if (!reportId.value) {
       // If no id stored, create new report
       report.created = serverTimestamp();

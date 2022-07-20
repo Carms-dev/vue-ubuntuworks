@@ -30,3 +30,22 @@ $footer-padding: 3rem 1.5rem;
 .control.is-flex.is-flex-direction-column .radio {
     margin-left: 0;
 }
+
+.module-buttons button {
+    border: none;
+    opacity: 0.5;
+    transition: all 0.2s ease-in-out;
+
+    &.selected {
+        opacity: 1;
+        border: 5px solid $primary;
+      }
+      &:hover {
+        opacity: 1;
+        color: $dark;
+      }
+}
+
+.module-form-container {
+    min-height: 100%;
+}
