@@ -2,6 +2,7 @@
   "audio_visual": [
     {
       "sectionHeader": "General",
+      "key": "audio_visual_general",
       "questions": [
         {
           "label": "What language(s) is the event hosted in?",
@@ -46,6 +47,7 @@
   "communication": [
     {
       "sectionHeader": "General",
+      "key": "communication_general",
       "questions": [
         {
           "label": "Will there be ASL/LSQ interpreter(s)?",
@@ -72,6 +74,7 @@
   "physical": [
     {
       "sectionHeader": "General",
+      "key": "physical_general",
       "questions": [
         {
           "label": "Does the main entrance to the venue feature any of the following? Select all that apply",
@@ -109,6 +112,7 @@
     },
     {
       "sectionHeader": "Within the Venue",
+      "key": "physical_within_venue",
       "questions": [
         {
           "sectionName": "Within the Venue",
@@ -152,6 +156,7 @@
     },
     {
       "sectionHeader": "Bathrooms",
+      "key": "physical_bathrooms",
       "questions": [
         {
           "label": "Bathrooms - Mobility device accessibility (select all that apply)",
@@ -182,6 +187,7 @@
     },
     {
       "sectionHeader": "Service Dogs",
+      "key": "physical_service_dogs",
       "questions": [
         {
           "label": "Will there be space for service dogs (e.g. enough room for dogs to sit with their owner)",
@@ -199,6 +205,7 @@
     },
     {
       "sectionHeader": "Transportation",
+      "key": "physical_transportation",
       "questions": [
         {
           "label": "Transportation accessibility to event. Select all that apply;",
@@ -216,6 +223,7 @@
   "covid": [
     {
       "sectionHeader": "General",
+      "key": "covid_general",
       "questions": [
         {
           "label": "Which general Covid-19 safety guidelines is your event implementing?",

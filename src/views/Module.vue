@@ -29,7 +29,19 @@
               v-for="(module, index) in chosenModules"
               :key="module.key"
             >
-              <ModuleForm :module="module" :questions="module.questions" v-if="checkSelected(index)" />
+              <div v-if="checkSelected(index)">
+                <h1 class="title is-1">
+                  {{ module.name }}
+                </h1>
+                <p class="block is-size-4 has-text-grey" v-if="module.description">{{ module.description }}</p>
+
+                <Suspense>
+                  <!-- Dynamic form -->
+                  <DynamicForm
+                    :form-sections="selectedModuleQuestions"
+                  />
+                </Suspense>
+              </div>
             </template>
           </div>
         </div>
@@ -42,12 +54,20 @@
 import { useModules } from '../data/modules';
 import ModuleForm from '../components/ModuleForm.vue';
 import { computed, ref } from 'vue';
+import { Suspense } from 'vue';
+import DynamicForm from '../components/DynamicForm.vue';
+import moduleQuestions from '../data/moduleQuestions.json';
 
 const chosenModules = useModules();
 let selectedIndex = ref(0);
+
 const selectedModule = computed(() => {
   return chosenModules[selectedIndex.value];
 });
+
+const selectedModuleQuestions = computed(() => {
+  return moduleQuestions[selectedModule.value.key];
+})
 
 function switchModuleView(moduleIndex) {
   console.log('SWITCHING FROM', selectedIndex.value, 'TO', moduleIndex);

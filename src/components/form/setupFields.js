@@ -6,8 +6,7 @@ export function useFieldProps(type, defaultVal) {
       required: true,
     },
     label: {
-      type: String,
-      required: true,
+      type: String
     },
     options: {
       type: Array,

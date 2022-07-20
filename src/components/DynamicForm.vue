@@ -29,6 +29,7 @@ import { SchemaFormFactory, useSchemaForm } from 'formvuelate'
 import VeeValidatePlugin from '@formvuelate/plugin-vee-validate';
 import { useFormSchema } from './form/buildformschema';
 import { useFetchFormData, useReportAddOrUpdate } from './form/formDataUtils';
+import _ from 'lodash';
 
 const props = defineProps({
   formSections: {
@@ -46,10 +47,14 @@ const SchemaFormWithValidation = SchemaFormFactory([
 
 const { reportId, formData } = await useFetchFormData();
 useSchemaForm(formData);
-const basicQuestionsSchema = useFormSchema(props.fieldList);
+const basicQuestionsSchema = useFormSchema(props.formSections);
+
+console.log(basicQuestionsSchema);
 
 async function onFormSubmit() {
   try {
+    // TODO: move this upward in component tree (ie. centralize firebase handling)
+    // ...Maybe with dep injection?
     await useReportAddOrUpdate();
     emit('formSubmit', reportId.value);
   }
