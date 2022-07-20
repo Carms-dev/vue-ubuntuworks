@@ -4,9 +4,6 @@ import RadioInput from './RadioInput.vue';
 import SelectInput from './SelectInput.vue';
 import ModuleCheckBoxInput from './ModuleCheckBoxInput.vue';
 import modules from '../../data/modules.json';
-import { ref } from 'vue';
-
-const formData = ref({});
 
 /**
  * Take in array of objects with form question data and convert to

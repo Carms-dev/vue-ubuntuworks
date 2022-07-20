@@ -6,6 +6,7 @@ import { ref } from 'vue';
 const reportId = useStorage('report-id', "");
 const formData = ref({});
 let formDataSnap = ref("");
+const emit = () => {}
 
 export async function useFetchFormData() {
   if (reportId.value) {
@@ -29,14 +30,9 @@ export async function useFetchFormData() {
 
 
 export async function useReportAddOrUpdate() {
-  const report = formData.value;
-
-  if (JSON.stringify(report) === formDataSnap.value) {
-    console.log("Nuffin' to do guv.");
-    return;
-  }
-
-  try {
+  if (JSON.stringify(report) !== formDataSnap.value) {
+    const report = formData.value;
+    
     if (!reportId.value) {
       // If no id stored, create new report
       report.created = serverTimestamp();
@@ -49,11 +45,5 @@ export async function useReportAddOrUpdate() {
       await updateDoc(reportRef, report);
       console.log("Updated report with ID", reportId);
     }
-
-    return true;
-  }
-  catch(error) {
-    console.error('Error writing report', error);
-    return false;
   }
 }

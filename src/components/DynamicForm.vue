@@ -49,12 +49,12 @@ useSchemaForm(formData);
 const basicQuestionsSchema = useFormSchema(props.fieldList);
 
 async function onFormSubmit() {
-  const submitSuccess = await useReportAddOrUpdate();
-
-  if (submitSuccess) {
+  try {
+    await useReportAddOrUpdate();
     emit('formSubmit', reportId.value);
-  } else {
-    console.log('NOPE')
+  }
+  catch(error) {
+    console.error('Error writing report:', error);
   }
 }
 </script>

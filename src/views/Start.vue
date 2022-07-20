@@ -27,7 +27,6 @@ import { Suspense } from 'vue';
 import router from '../router';
 
 function nextPage(reportId) {
-  console.log('FORM SUBMIT FOR', reportId);
   router.push(
     // TODO: factor in proper module redirection
     `/reports/${reportId}/modules/audio_visual`
