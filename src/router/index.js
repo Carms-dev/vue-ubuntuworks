@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import Start from '../views/Start.vue';
 import Module from '../views/Module.vue';
 import ReportShow from '../views/ReportShow.vue';
+import Report from '../views/Report.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 // Vue.use(VueRouter)
@@ -26,7 +27,7 @@ const routes = [
   {
     path: '/reports/:report_id',
     name: 'show',
-    component: ReportShow
+    component: Report
   },
   // {
   //   path: '/reports/:report_id/edit',

@@ -10,6 +10,21 @@ const formData = ref({});
 let formDataSnap = ref("");
 const emit = () => {};
 
+// TODO: remove redundancy here
+export async function useFetchReportData(paramReportId) {
+  const reportRef = doc(db, 'reports', paramReportId);
+  const reportSnap = await getDoc(reportRef);
+  console.log(reportSnap);
+
+  if (reportSnap.exists()) {
+    reportData.value = reportSnap.data();
+  } else {
+    console.log("Couldn't retrieve report! :(");
+  }
+
+  return { reportData };
+}
+
 export async function useFetchFormData(moduleName) {
   if (reportId.value) {
     const reportRef = doc(db, 'reports', reportId.value);
