@@ -10,7 +10,8 @@
         <Suspense>
           <!-- Dynamic form -->
           <DynamicForm
-            :form-sections="basicQuestions"
+            :module-name="moduleName"
+            :form-sections="moduleSections"
             @form-submit="nextPage"
           />
         </Suspense>
@@ -26,10 +27,13 @@ import basicQuestions from "../data/basicQuestions.json";
 import { Suspense } from 'vue';
 import router from '../router';
 
+const moduleName = Object.keys(basicQuestions)[0];
+const moduleSections = basicQuestions[moduleName];
+
 function nextPage(reportId) {
   router.push(
     // TODO: factor in proper module redirection
-    `/reports/${reportId}/modules/audio_visual`
+    `/reports/${reportId}/modules`
   );
 }
 </script>

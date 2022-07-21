@@ -38,7 +38,9 @@
                 <Suspense>
                   <!-- Dynamic form -->
                   <DynamicForm
+                    :module-name="module.key"
                     :form-sections="selectedModuleQuestions"
+                    @form-submit="nextStep"
                   />
                 </Suspense>
               </div>
@@ -51,14 +53,14 @@
 </template>
 
 <script setup>
-import { useModules } from '../data/modules';
+import { useChosenModules } from '../data/modules';
 import ModuleForm from '../components/ModuleForm.vue';
 import { computed, ref } from 'vue';
 import { Suspense } from 'vue';
 import DynamicForm from '../components/DynamicForm.vue';
 import moduleQuestions from '../data/moduleQuestions.json';
 
-const chosenModules = useModules();
+const chosenModules = useChosenModules();
 let selectedIndex = ref(0);
 
 const selectedModule = computed(() => {
@@ -67,7 +69,7 @@ const selectedModule = computed(() => {
 
 const selectedModuleQuestions = computed(() => {
   return moduleQuestions[selectedModule.value.key];
-})
+});
 
 function switchModuleView(moduleIndex) {
   console.log('SWITCHING FROM', selectedIndex.value, 'TO', moduleIndex);
@@ -76,5 +78,14 @@ function switchModuleView(moduleIndex) {
 
 function checkSelected(moduleIndex) {
   return moduleIndex === selectedIndex.value;
+}
+
+function nextStep(reportId) {
+  if (selectedIndex.value === chosenModules.length - 1) {
+    console.log('LAST MODULE');
+  } else {
+    selectedIndex.value++
+    console.log('NEW QUESTIONS?', selectedModuleQuestions.value);
+  }
 }
 </script>

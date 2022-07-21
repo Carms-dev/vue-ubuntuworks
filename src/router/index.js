@@ -19,7 +19,7 @@ const routes = [
     component: Start
   },
   {
-    path: '/reports/:report_id/modules/:module_key',
+    path: '/reports/:report_id/modules',
     name: 'module',
     component: Module
   },

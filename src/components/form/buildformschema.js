@@ -3,7 +3,7 @@ import TextInput from './TextInput.vue';
 import RadioInput from './RadioInput.vue';
 import SelectInput from './SelectInput.vue';
 import ModuleCheckBoxInput from './ModuleCheckBoxInput.vue';
-import { useModules } from '../../data/modules';
+import { useAllModules } from '../../data/modules';
 import SectionHeading from './SectionHeading.vue';
 
 /**
@@ -26,8 +26,6 @@ export function useFormSchema(formSections) {
         // default: question.initial,
         validations: Yup,
       };
-
-      console.log(questionSchema);
   
       // Map fields based on type
       switch (question.type) {
@@ -46,7 +44,7 @@ export function useFormSchema(formSections) {
           questionSchema.validations = questionSchema.validations.array();
           break;
         case "module-checkbox-group":
-          questionSchema.modules = useModules();
+          questionSchema.modules = useAllModules();
           questionSchema.component = ModuleCheckBoxInput;
           questionSchema.validations = questionSchema.validations.array();
           break;
@@ -76,49 +74,4 @@ export function useFormSchema(formSections) {
 
     return sectionSchema;
   });
-
-
-  // return formSections.map((question) => {
-  //   const questionSchema = {
-  //     model: question.key,
-  //     label: question.label,
-  //     type: question.type,
-  //     // default: question.initial,
-  //     validations: Yup,
-  //   };
-
-  //   // Map fields based on type
-  //   switch (question.type) {
-  //     case "text-input":
-  //       questionSchema.component = TextInput;
-  //       questionSchema.validations = questionSchema.validations.string();
-  //       break;
-  //     case "multiple-choice":
-  //       questionSchema.component = RadioInput;
-  //       questionSchema.options = question.options;
-  //       questionSchema.validations = questionSchema.validations.string();
-  //       break;
-  //     case "multi-select":
-  //       questionSchema.component = SelectInput;
-  //       questionSchema.options = question.options;
-  //       questionSchema.validations = questionSchema.validations.array();
-  //       break;
-  //     case "module-checkbox-group":
-  //       questionSchema.modules = useModules();
-  //       questionSchema.component = ModuleCheckBoxInput;
-  //       questionSchema.validations = questionSchema.validations.array();
-  //       break;
-  //   }
-
-  //   const requiredMessage = question.hasOwnProperty("description")
-  //     ? `Psst! Don't forget to enter ${question.description}.`
-  //     : undefined;
-
-  //   if (question.required) {
-  //     questionSchema.required = true;
-  //     questionSchema.validations = questionSchema.validations.required(requiredMessage);
-  //   }
-
-  //   return questionSchema;
-  // });
 }
