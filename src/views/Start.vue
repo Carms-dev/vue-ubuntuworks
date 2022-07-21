@@ -13,7 +13,13 @@
             :module-name="moduleName"
             :form-sections="moduleSections"
             @form-submit="nextPage"
-          />
+          >
+            <template #actionButtons>
+              <div class="control">
+                <button type="submit" class="button is-warning">Next &raquo;</button>
+              </div>
+            </template>
+          </DynamicForm>
         </Suspense>
       </div>
     </div>
@@ -33,7 +39,7 @@ const moduleSections = basicQuestions[moduleName];
 function nextPage(reportId) {
   router.push(
     // TODO: factor in proper module redirection
-    `/reports/${reportId}/modules`
+    `/reports/${reportId}/modules/audio_visual`
   );
 }
 </script>
