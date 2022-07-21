@@ -100,7 +100,7 @@ const selectedModuleQuestions = computed(() => {
 function switchModuleView(moduleIndex) {
   const nextModule = chosenModules[moduleIndex];
   console.log('NEXT MODULE', nextModule);
-  router.push(`/reports/${reportId}/modules/${nextModule.key}`);
+  router.push(`/reports/${reportId.value}/modules/${nextModule.key}`);
 }
 
 function checkSelected(moduleIndex) {
@@ -109,7 +109,8 @@ function checkSelected(moduleIndex) {
 
 function nextStep() {
   if (selectedIndex.value === chosenModules.length - 1) {
-    console.log('LAST MODULE');
+    console.log('LAST STEP');
+    router.push(`/reports/${reportId.value}`);
   } else {
     switchModuleView(selectedIndex.value + 1);
   }
