@@ -7,10 +7,7 @@
     class="mb-6"
   >
     <template #afterForm>
-      <!-- Submit -->
-      <div class="control">
-        <button type="submit" class="button is-warning">Next &raquo;</button>
-      </div>
+      <slot name="actionButtons"></slot>
     </template>
   </SchemaFormWithValidation>
 

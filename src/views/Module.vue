@@ -41,7 +41,17 @@
                     :module-name="module.key"
                     :form-sections="selectedModuleQuestions"
                     @form-submit="nextStep"
-                  />
+                  >
+                    <template #actionButtons>
+                      <!-- Back and Next -->
+                      <div class="control" v-if="index !== 0">
+                        <button @click="stepBack" type="button" class="button is-warning">&laquo; Back</button>
+                      </div>
+                      <div class="control">
+                        <button type="submit" class="button is-warning">Next &raquo;</button>
+                      </div>
+                    </template>
+                  </DynamicForm>
                 </Suspense>
               </div>
             </template>
@@ -87,5 +97,9 @@ function nextStep(reportId) {
     selectedIndex.value++
     console.log('NEW QUESTIONS?', selectedModuleQuestions.value);
   }
+}
+
+function stepBack() {
+  selectedIndex.value--
 }
 </script>
