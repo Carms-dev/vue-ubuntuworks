@@ -112,7 +112,7 @@ console.log(reportData.value);
 let activeTabIndex = ref(0);
 
 const tabList = [
-  "About this event",
+  "Overview",
   "Audio/visual",
   "Communication",
   "Physical",
