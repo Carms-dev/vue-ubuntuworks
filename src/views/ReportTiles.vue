@@ -15,39 +15,47 @@
 
 <script setup>
 import { markRaw, reactive, ref } from 'vue';
+import AboutEvent from '../components/AboutEvent.vue';
+import AccessIcons from '../components/AccessIcons.vue';
 import Contact from '../components/Contact.vue';
 import Tile from '../components/Tile.vue';
 
+// TODO: move this to JSON import
 const tileList = ref([
   {
-    heading: "hello",
-    content: "boop",
-    size: 2
-  },
-  {
-    heading: "hello",
-    content: "whaa"
+    heading: "About this event",
+    component: markRaw({
+      name: AboutEvent,
+      props: {
+        aboutText: "This is an event where this that and the other thing happen. We will do this thing, then that thing. All the things!",
+        eventType: 2
+      }
+    })
   },
   {
     vertical: true,
     children: [
       {
-        heading: "hello",
-        content: "weeoo"
+        heading: "Accessibility features",
+        component: markRaw({
+          name: AccessIcons,
+          props: {
+            icons: ["whee"] 
+          }
+        })
       },
       {
-    heading: "hello",
-    // content: "pew"
-    component: markRaw({
-      name: Contact,
-      props: {
-        name: "Jane Doe",
-        email: "janedoe@idontexist.info",
-        phone: "+1 (234) 567-8909",
-        other: "Instagram: @iamthecoolest"
+        heading: "Accessibility contact",
+        // content: "pew"
+        component: markRaw({
+          name: Contact,
+          props: {
+            name: "Jane Doe",
+            email: "janedoe@idontexist.info",
+            phone: "+1 (234) 567-8909"
+          }
+        })
       }
-    })
-  },
     ]
   }
 ])

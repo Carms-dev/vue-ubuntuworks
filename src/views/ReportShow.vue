@@ -64,8 +64,8 @@
                   
                 </div>
                 <p>
-                    <a class="button is-outlined is-link" href="#">Event homepage</a>
-                  </p>
+                  <a class="button is-outlined is-link" href="#">Event homepage</a>
+                </p>
               </div>
             </div>
 
