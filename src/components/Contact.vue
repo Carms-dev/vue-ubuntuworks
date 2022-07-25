@@ -8,16 +8,19 @@
       </figure>
       <div class="media-content">
         <div class="content">
-          <h3 class="title is-4">Jane Doe</h3>
-          <p>
-            Email: <a href="#" class="is-block">janedoe@idontexist.com</a>
+          <h3 class="title is-4">{{ name }}</h3>
+          <p v-if="email">
+            Email: <a href="#" class="is-block">{{ email }}</a>
           </p>
-          <p>
-            Phone: <a href="#" class="is-block">+1 (234) 567-8909</a>
+          <p v-if="phone">
+            Phone: <a href="#" class="is-block">{{ phone }}</a>
           </p>
-          <p>
-            {{ friendo }}
-          </p>
+          <div v-if="other">
+            <p class="block">
+              Other:
+            </p>
+            <p>{{ other }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -26,8 +29,18 @@
 
 <script setup>
 const props = defineProps({
-  friendo: String
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  other: {
+    type: String
+  }
 });
-
-console.log(props);
 </script>

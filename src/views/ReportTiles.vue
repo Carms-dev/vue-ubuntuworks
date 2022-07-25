@@ -20,29 +20,32 @@ import Tile from '../components/Tile.vue';
 const tileList = ref([
   {
     heading: "hello",
-    // content: "pew"
-    component: markRaw({
-      name: Contact,
-      props: {
-        friendo: "HELLOOOOOOOWHEEEEEE"
-      }
-    })
+    content: "boop"
   },
   {
     heading: "hello",
-    content: "boop"
+    content: "whaa"
   },
   {
     vertical: true,
     children: [
       {
         heading: "hello",
-        content: "whaa"
+        content: "weeoo"
       },
       {
-        heading: "hello",
-        content: "weeoo"
+    heading: "hello",
+    // content: "pew"
+    component: markRaw({
+      name: Contact,
+      props: {
+        name: "Jane Doe",
+        email: "janedoe@idontexist.info",
+        phone: "+1 (234) 567-8909",
+        other: "Instagram: @iamthecoolest"
       }
+    })
+  },
     ]
   }
 ])

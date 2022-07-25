@@ -37,6 +37,7 @@
           :vertical="tile.vertical"
           :children="tile.children"
           :content="tile.content"
+          :component="tile.component"
           :heading="tile.heading"
         ></Tile>
       </template>
