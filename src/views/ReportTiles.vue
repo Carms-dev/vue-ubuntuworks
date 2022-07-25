@@ -7,6 +7,7 @@
         :content="tile.content"
         :component="tile.component"
         :heading="tile.heading"
+        :size="tile.size"
       ></Tile>
     </template>
   </div>
@@ -20,7 +21,8 @@ import Tile from '../components/Tile.vue';
 const tileList = ref([
   {
     heading: "hello",
-    content: "boop"
+    content: "boop",
+    size: 2
   },
   {
     heading: "hello",

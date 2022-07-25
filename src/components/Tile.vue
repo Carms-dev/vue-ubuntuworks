@@ -3,7 +3,10 @@
   <template
     v-if="content || component"
   >
-    <div class="tile is-parent">
+    <div
+      class="tile is-parent"
+      :class="sizeClass"
+    >
       <div class="tile card is-child p-0">
         <div class="card-header">
           <h2 class="card-header-title title is-3 has-text-grey mb-0">
@@ -39,6 +42,7 @@
           :content="tile.content"
           :component="tile.component"
           :heading="tile.heading"
+          :size="tile.size"
         ></Tile>
       </template>
     </div>
@@ -69,6 +73,9 @@ const props = defineProps({
   },
   component: {
     type: Object,
+  },
+  size: {
+    type: Number
   }
 });
 
@@ -84,6 +91,15 @@ const isParent = computed(() => {
     return false;
   }
 });
+
+const sizeClass = computed(() => {
+  if (props.size) {
+    const classObject = {};
+    const className = `is-${props.size}`;
+    classObject[className] = props.size;
+    return classObject;
+  }
+})
 
 console.log("quack?", props.vertical);
 
