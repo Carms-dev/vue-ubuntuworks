@@ -1,46 +1,26 @@
 <template>
-  <!-- Overview -->
-  <div 
-    class="tile is-ancestor"
-    v-show="currentTab === 0"
-  >
-    <template v-for="(tile, index) in overviewTiles" :key="index">
-      <Tile
-        :vertical="tile.vertical"
-        :children="tile.children"
-        :content="tile.content"
-        :component="tile.component"
-        :heading="tile.heading"
-        :size="tile.size"
-      ></Tile>
-    </template>
-  </div>
-  <!-- Audio/Visual -->
-  <div 
-    class="tile is-ancestor"
-    v-show="currentTab === 1"
-  >
-    <template v-for="(tile, index) in avTiles" :key="index">
-      <Tile
-        :vertical="tile.vertical"
-        :children="tile.children"
-        :content="tile.content"
-        :component="tile.component"
-        :heading="tile.heading"
-        :size="tile.size"
-      ></Tile>
-    </template>
-  </div>
+  <ReportTab
+    v-for="(section, index) in reportSections"
+    :key="section.name"
+    :tiles="section.tiles"
+    v-show="currentTab === index"
+  />
 </template>
 
 <script setup>
-import { markRaw, reactive, ref, watch } from 'vue';
+import { computed, markRaw, reactive, ref, watch } from 'vue';
 import AboutEvent from '../components/AboutEvent.vue';
 import AccessIcons from '../components/AccessIcons.vue';
 import Contact from '../components/Contact.vue';
 import Tile from '../components/Tile.vue';
+import ReportTab from '../components/ReportTab.vue';
 
 const props = defineProps({
+  reportSections: {
+    type: Array,
+    required: true,
+    default: []
+  },
   currentTab: {
     type: Number,
     required: true,
@@ -48,68 +28,32 @@ const props = defineProps({
   }
 });
 
-// TODO: move this to JSON import
-const overviewTiles = ref([
-  {
-    heading: "About this event",
-    component: markRaw({
-      name: AboutEvent,
-      props: {
-        aboutText: "This is an event where this that and the other thing happen. We will do this thing, then that thing. All the things!",
-        eventType: 2
-      }
-    })
-  },
-  {
-    vertical: true,
-    children: [
-      {
-        heading: "Accessibility features",
-        component: markRaw({
-          name: AccessIcons,
-          props: {
-            icons: ["whee"] 
-          }
-        })
-      },
-      {
-        heading: "Accessibility contact",
-        // content: "pew"
-        component: markRaw({
-          name: Contact,
-          props: {
-            name: "Jane Doe",
-            email: "janedoe@idontexist.info",
-            phone: "+1 (234) 567-8909"
-          }
-        })
-      }
-    ]
-  }
-]);
+// TODO: move below two functions to composable for use in each tab view
+// function checkForChildTiles(tile) {
+//   if (!tile.hasOwnProperty('children')) {
+//     return tile;
+//   }
 
-const avTiles = ref([
-  {
-    vertical: true,
-    children: [
-      {
-        children: [
-          {
-            heading: "Languages",
-            content: "The event will be hosted in the following languages: [add translation info below]"
-          },
-          {
-            heading: "Other audio & visual accommodations",
-            content: "etc."
-          },
-        ]
-      },
-      {
-        heading: "Further information",
-        content: "bloop"
-      }
-    ]
-  }
-])
+//   return tile.children.map((childTile) => {
+//     return checkForChildTiles(childTile);
+//   });
+// }
+
+// const avFlat = computed(() => {
+//   return [{
+//     vertical: true,
+//     children: avTiles.value
+//         .map((tile) => {
+//           const toBeFlattened = checkForChildTiles(tile);
+//           return toBeFlattened;
+//         })
+//         .flat(10)
+//   }];
+// });
+
+// const reportTabTiles = ref([
+//   overviewTiles.value,
+//   avFlat.value
+// ]);
 
 </script>

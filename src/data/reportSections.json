@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Overview",
+    "tiles": [
+      {
+        "heading": "About this event",
+        "component": {
+          "name": "AboutEvent",
+          "props": {
+            "aboutText": "This is an event where this that and the other thing happen. We will do this thing, then that thing. All the things!",
+            "eventType": 2
+          }
+        }
+      },
+      {
+        "vertical": true,
+        "children": [
+          {
+            "heading": "Accessibility features",
+            "component": {
+              "name": "AccessIcons",
+              "props": {
+                "icons": ["whee"] 
+              }
+            }
+          },
+          {
+            "heading": "Accessibility contact",
+            "component": {
+              "name": "Contact",
+              "props": {
+                "name": "Jane Doe",
+                "email": "janedoe@idontexist.info",
+                "phone": "+1 (234) 567-8909"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Audio/Visual",
+    "tiles": [
+      {
+        "vertical": true,
+        "children": [
+          {
+            "children": [
+              {
+                "heading": "Languages",
+                "content": "The event will be hosted in the following languages: [add translation info below]"
+              },
+              {
+                "heading": "Other audio & visual accommodations",
+                "content": "etc."
+              }
+            ]
+          },
+          {
+            "heading": "Further information",
+            "content": "bloop"
+          }
+        ]
+      }
+    ]
+  }
+]

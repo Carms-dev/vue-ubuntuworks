@@ -1,12 +1,10 @@
 <template>
-  <!-- Child tile -->
-  <template
-    v-if="content || component"
+  <div
+    class="tile"
+    :class="parentTileClass"
   >
-    <div
-      class="tile is-parent"
-      :class="sizeClass"
-    >
+    <!-- Child tile, i.e. one with content -->
+    <template v-if="content || component || heading">
       <div class="tile card is-child p-0">
         <div class="card-header">
           <h2 class="card-header-title title is-3 has-text-grey mb-0">
@@ -24,29 +22,22 @@
           ></component>
         </div>
       </div>
-    </div>   
-  </template>
+    </template>
 
-  <!-- Layout/container tile -->
-  <template
-    v-else-if="children"
-  >
-    <div
-      class="tile"
-      :class="sizeClass"
-    >
-      <template v-for="(tile, index) of children">
-        <Tile
-          :vertical="tile.vertical"
-          :children="tile.children"
-          :content="tile.content"
-          :component="tile.component"
-          :heading="tile.heading"
-          :size="tile.size"
-        ></Tile>
-      </template>
-    </div>
-  </template>
+    <!-- Parent tile, i.e. one with children -->
+    <template v-else-if="children">
+      <Tile
+        v-for="(tile, index) of children"
+        :key="index"
+        :vertical="tile.vertical"
+        :children="tile.children"
+        :content="tile.content"
+        :component="tile.component"
+        :heading="tile.heading"
+        :size="tile.size"
+      ></Tile>
+    </template>
+  </div>
 </template>
 
 <script setup>
@@ -54,46 +45,24 @@ import { computed } from 'vue';
 import Tile from './Tile.vue';
 
 const props = defineProps({
-  verticalParent: {
-    type: Boolean,
-    default: false
-  },
-  children: {
-    type: Array
-  },
+  children: Array,
+  heading: String,
+  content: String,
+  component: Object,
+  size: Number,
   vertical: {
     type: Boolean,
     default: false
-  },
-  heading: {
-    type: String,
-  },
-  content: {
-    type: String,
-  },
-  component: {
-    type: Object,
-  },
-  size: {
-    type: Number
   }
 });
 
-const hasContent = computed(() => {
-  console.log(props.component)
-  return props.content || props.component;
-})
-
-const isParent = computed(() => {
-  if (props.children) {
-    return props.children.some(child => child.content); 
-  } else {
-    return false;
-  }
-});
-
-const sizeClass = computed(() => {
+const parentTileClass = computed(() => {
   const classObject = {};
+  
+  if (props.content || props.component || props.heading) {
+    classObject['is-parent'] = true;
+  }
+
   if (props.vertical) {
     classObject['is-vertical'] = true;
   }
@@ -105,11 +74,5 @@ const sizeClass = computed(() => {
 
   return classObject;
 });
-
-console.log("quack?", props.vertical);
-
-// function isParent() {
-//   return Boolean(props.children);
-// }
 
 </script>

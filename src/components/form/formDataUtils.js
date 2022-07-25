@@ -14,7 +14,6 @@ const emit = () => {};
 export async function useFetchReportData(paramReportId) {
   const reportRef = doc(db, 'reports', paramReportId);
   const reportSnap = await getDoc(reportRef);
-  console.log(reportSnap);
 
   if (reportSnap.exists()) {
     reportData.value = reportSnap.data();

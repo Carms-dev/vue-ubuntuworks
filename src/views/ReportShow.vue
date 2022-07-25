@@ -17,11 +17,11 @@
           <div class="container">
             <ul>
               <li
-                v-for="(tab, index) in tabList"
-                :key="tab"
+                v-for="(section, index) in reportSections"
+                :key="section"
                 :class="{ 'is-active': index === activeTabIndex }"
               >
-                <a @click="switchToTab(index)">{{ tab }}</a>
+                <a @click="switchToTab(index)">{{ section.name }}</a>
               </li>
             </ul>
           </div>
@@ -30,7 +30,10 @@
     </section>
 
     <section class="section is-size-5 px-0">
-      <ReportTabs :currentTab="activeTabIndex"></ReportTabs>
+      <ReportTabs
+        :current-tab="activeTabIndex"
+        :report-sections="reportSections"
+      ></ReportTabs>
     </section>
   </div>
 </template>
@@ -41,11 +44,11 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useFetchReportData } from '../components/form/formDataUtils';
 import ReportTabs from './ReportTabs.vue';
+import reportSections from '../data/reportSections.json';
 
 const route = useRoute();
 const paramReportId = route.params.report_id;
 const { reportData } = await useFetchReportData(paramReportId);
-console.log(reportData.value);
 let activeTabIndex = ref(0);
 
 const tabList = [
