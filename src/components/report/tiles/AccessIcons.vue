@@ -1,14 +1,20 @@
 <template>
-  <div class="content fa-2x">
-      <span class="icon has-text-primary is-large mr-5">
-        <i class="fa-solid fa-closed-captioning"></i>
+  <div class="content access-icons fa-2x">
+    <button class="button is-large is-link is-active mr-5">
+      <span class="icon is-large">
+        <i class="fa-solid fa-inverse fa-closed-captioning"></i>
       </span>
-      <span class="icon has-text-primary is-large mr-5">
-        <i class="fa-solid fa-hands-asl-interpreting"></i> 
+    </button>
+    <button class="button is-large is-link is-active mr-5">
+      <span class="icon is-large">
+        <i class="fa-solid fa-inverse fa-hands-asl-interpreting"></i> 
       </span>
-      <span class="icon has-text-warning is-large mr-5">
-        <i class="fa-brands fa-accessible-icon"></i> 
+    </button>
+    <button class="button access-warning is-large is-link is-active mr-5">
+      <span class="icon is-large">
+        <i class="fa-brands fa-inverse fa-accessible-icon"></i> 
       </span>
+    </button>
   </div>
 </template>
 

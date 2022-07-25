@@ -50,3 +50,22 @@ $footer-padding: 3rem 1.5rem;
 .module-form-container {
   min-height: 100%;
 }
+
+.access-icons .button {
+  border-radius: 9999px;
+}
+
+.access-warning {
+  position: relative;
+
+  &:before {
+    content: "\f071";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: orange;
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    font-size: 25px;
+  }
+}

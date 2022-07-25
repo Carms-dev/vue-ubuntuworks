@@ -16,7 +16,7 @@
         "vertical": true,
         "children": [
           {
-            "heading": "Accessibility features",
+            "heading": "Accessibility at-a-glance",
             "component": {
               "name": "AccessIcons",
               "props": {
@@ -82,5 +82,14 @@
         ]
       }
     ]
+  },
+  {
+    "name": "Communication"
+  },
+  {
+    "name": "COVID-19"
+  },
+  {
+    "name": "Other"
   }
 ]
