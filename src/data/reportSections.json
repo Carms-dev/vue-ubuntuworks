@@ -51,18 +51,33 @@
                 "heading": "Languages & translation",
                 "component": {
                   "name": "EventLanguages",
-                  "props": {}
+                  "props": {
+                    "languages": [
+                      "English",
+                      "French"
+                    ],
+                    "translation": ["French to English"]
+                  }
                 }
               },
               {
                 "heading": "Other audio & visual accommodations",
-                "content": "etc."
+                "component": {
+                  "name": "OtherServices",
+                  "props": {
+                    "services": [
+                      "Live closed captioning",
+                      "Video closed captioning",
+                      "Audio transcription (provided after the event)"
+                    ]
+                  }
+                }
               }
             ]
           },
           {
             "heading": "Further information",
-            "content": "bloop"
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           }
         ]
       }

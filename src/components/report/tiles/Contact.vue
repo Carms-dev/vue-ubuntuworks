@@ -10,10 +10,10 @@
         <div class="content">
           <h3 class="title is-4">{{ name }}</h3>
           <p v-if="email">
-            Email: <a href="#" class="is-block">{{ email }}</a>
+            Email: <a href="#" class="is-block"><strong>{{ email }}</strong></a>
           </p>
           <p v-if="phone">
-            Phone: <a href="#" class="is-block">{{ phone }}</a>
+            Phone: <a href="#" class="is-block"><strong>{{ phone }}</strong></a>
           </p>
           <div v-if="other">
             <p class="block">

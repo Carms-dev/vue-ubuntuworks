@@ -4,7 +4,7 @@
       The event will be held in the following languages:
     </p>
     <ul class="mb-5">
-      <li v-for="language in eventLanguages">
+      <li class="block" v-for="language in languages">
         <strong>{{ language }}</strong>
       </li>
     </ul>
@@ -12,7 +12,7 @@
       Translation services available:
     </p>
     <ul>
-      <li v-for="service in translationServices">
+      <li class="block" v-for="service in translation">
         <strong>{{ service }}</strong>
       </li>
     </ul>
@@ -25,16 +25,10 @@ const props = defineProps({
   languages: {
     type: Array[String],
     required: true
+  },
+  translation: {
+    type: Array[String],
+    required: true
   }
 });
-
-// TODO: replace this and translation with dropdown-chosen list (selected from JSON)
-const eventLanguages = ref([
-  "English",
-  "French"
-]);
-
-const translationServices = ref([
-  "French to English"
-])
 </script>

@@ -1,7 +1,11 @@
 <template>
   <div class="tile is-ancestor">
-    <template v-for="(tile, index) in tiles" :key="index">
+    <template
+      v-for="(tile, index) in tiles"
+      :key="index"
+    >
       <Tile
+        :parent-key="index"
         :vertical="tile.vertical"
         :children="tile.children"
         :content="tile.content"

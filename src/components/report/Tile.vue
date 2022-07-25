@@ -28,7 +28,8 @@
     <template v-else-if="children">
       <Tile
         v-for="(tile, index) of children"
-        :key="index"
+        :parent-key="index"
+        :key="parentKey + '-' + index"
         :vertical="tile.vertical"
         :children="tile.children"
         :content="tile.content"
@@ -45,6 +46,7 @@ import { computed } from 'vue';
 import Tile from './Tile.vue';
 
 const props = defineProps({
+  parentKey: [String, Number],
   children: Array,
   heading: String,
   content: String,
