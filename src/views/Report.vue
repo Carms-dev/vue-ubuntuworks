@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <div class="box p-0">
+      <div class="p-0">
         <Suspense>
           <ReportShow></ReportShow>
         </Suspense>

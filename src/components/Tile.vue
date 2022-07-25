@@ -33,7 +33,7 @@
   >
     <div
       class="tile"
-      :class="{ 'is-vertical': vertical }"
+      :class="sizeClass"
     >
       <template v-for="(tile, index) of children">
         <Tile
@@ -93,13 +93,18 @@ const isParent = computed(() => {
 });
 
 const sizeClass = computed(() => {
+  const classObject = {};
+  if (props.vertical) {
+    classObject['is-vertical'] = true;
+  }
+
   if (props.size) {
-    const classObject = {};
     const className = `is-${props.size}`;
     classObject[className] = props.size;
-    return classObject;
   }
-})
+
+  return classObject;
+});
 
 console.log("quack?", props.vertical);
 
