@@ -9,11 +9,11 @@
 
 <script setup>
 import { computed, markRaw, reactive, ref, watch } from 'vue';
-import AboutEvent from '../components/AboutEvent.vue';
-import AccessIcons from '../components/AccessIcons.vue';
-import Contact from '../components/Contact.vue';
-import Tile from '../components/Tile.vue';
-import ReportTab from '../components/ReportTab.vue';
+import AboutEvent from '../components/report/tiles/AboutEvent.vue';
+import AccessIcons from '../components/report/tiles/AccessIcons.vue';
+import Contact from '../components/report/tiles/Contact.vue';
+import Tile from '../components/report/Tile.vue';
+import ReportTab from '../components/report/ReportTab.vue';
 
 const props = defineProps({
   reportSections: {

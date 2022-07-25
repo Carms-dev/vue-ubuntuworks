@@ -48,8 +48,11 @@
           {
             "children": [
               {
-                "heading": "Languages",
-                "content": "The event will be hosted in the following languages: [add translation info below]"
+                "heading": "Languages & translation",
+                "component": {
+                  "name": "EventLanguages",
+                  "props": {}
+                }
               },
               {
                 "heading": "Other audio & visual accommodations",
